@@ -1,0 +1,28 @@
+{
+  "name": "gulp-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-imagemin": "^8.0.0"
+  },
+  "browserslist": [
+    "defaults",
+    "last 3 version",
+    "ios_saf >= 12",
+    "safari >= 14",
+    "android >= 4",
+    "not dead"
+  ]
+}
