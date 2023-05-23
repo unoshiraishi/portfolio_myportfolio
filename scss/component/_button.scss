@@ -1,0 +1,48 @@
+@use "../global" as g;
+
+/*!
+component > button
+------------------------------
+*/
+.c-button {
+    padding: 8px 16px;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--color-accent);
+    border-radius: 20px;
+    text-decoration: none;
+
+    &::after {
+        content: '';
+        width: 15px;
+        height: 14px;
+        background-image: url(../img/icon.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: transform 0.3s;
+    }
+
+    &:hover {
+        &::after {
+            transform: translate(2px, -2px);
+        }
+    }
+
+    &--modal {
+        background-color: #f6af15;
+        cursor: pointer;
+        gap: 7px;
+
+        &::after {
+            width: 20px;
+            height: 15px;
+            background-image: url(../img/modal_icon.png);
+        }
+    }
+
+}

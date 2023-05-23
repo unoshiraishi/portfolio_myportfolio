@@ -1,0 +1,822 @@
+@use "../global" as g;
+
+/*!
+page > top > top-kv
+------------------------------
+*/
+.top-kv {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1500px;
+    position: relative;
+
+    @include g.mq() {
+        width: 85%;
+    }
+}
+.top-kv-message {
+    color: #4b3b0e;
+    position: absolute;
+    top: 10px;
+    right: -20px;
+    transform: rotate(15deg);
+    font-size: 28px;
+    font-family: var(--font-family-flower);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    @include g.mq(sm) {
+        font-size: 36px;
+        top: 20px;
+    }
+
+    @include g.mq() {
+        font-size: 40px;
+        right: -30px;
+    }
+}
+.flowers {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 40px 0px;
+
+    @include g.mq(sm) {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 80px 0px;
+    }
+
+    @include g.mq() {
+        padding: 80px 0px;
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.flower-body {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: grid;
+    place-items: center;
+
+    $body_size :(
+        01:( width: 237px, height: 236px),
+        02:( width: 201px, height: 222px),
+        03:( width: 223px, height: 223px),
+        04:( width: 182px, height: 182px),
+        05:( width: 212px, height: 210px),
+        06:( width: 220px, height: 219px),
+        07:( width: 211px, height: 228px),
+        08:( width: 219px, height: 217px),
+        09:( width: 190px, height: 200px),
+        10:( width: 212px, height: 213px),
+        11:( width: 229px, height: 228px),
+        12:( width: 229px, height: 221px),
+    );
+
+    @each $key, $value in $body_size {
+        @if $key < 10 {
+            &--0#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_0#{$key}_body.png);
+                 background-image: image-set(url(../img/flower_0#{$key}_body.png) 1x, url(../img/flower_0#{$key}_body@2x.png) 2x);
+            }
+        } @else {
+            &--#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_#{$key}_body.png);
+                 background-image: image-set(url(../img/flower_#{$key}_body.png) 1x, url(../img/flower_#{$key}_body@2x.png) 2x);
+            }
+        }
+    }
+}
+
+.flower-face {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: grid;
+    place-items: center;
+    width: 40%;
+
+    $face_size :(
+        1:( width: 69px, height: 70px),
+        2:( width: 70px, height: 69px),
+        3:( width: 82px, height: 82px),
+        4:( width: 74px, height: 74px),
+        5:( width: 108px, height: 109px),
+        6:( width: 74px, height: 74px),
+        7:( width: 79px, height: 79px),
+        8:( width: 78px, height: 79px),
+        9:( width: 99px, height: 99px),
+        10:( width: 81px, height: 80px),
+        11:( width: 82px, height: 83px),
+        12:( width: 79px, height: 79px),
+    );
+
+    @each $key, $value in $face_size {
+        @if $key < 10 {
+            &--0#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_0#{$key}_face.png);
+                 background-image: image-set(url(../img/flower_0#{$key}_face.png) 1x, url(../img/flower_0#{$key}_face@2x.png) 2x);
+            }
+        } @else {
+            &--#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_#{$key}_face.png);
+                 background-image: image-set(url(../img/flower_#{$key}_face.png) 1x, url(../img/flower_#{$key}_face@2x.png) 2x);
+            }
+        }
+    }
+}
+
+.flower-eyes {
+    background-size: contain;
+    background-repeat: no-repeat;
+    align-self: flex-end;
+    width: 45%;
+
+    $eyes_size :(
+        1:( width: 34px, height: 24px),
+        2:( width: 34px, height: 16px),
+        3:( width: 41px, height: 13px),
+        4:( width: 35px, height: 20px),
+        5:( width: 46px, height: 31px),
+        6:( width: 44px, height: 20px),
+        7:( width: 34px, height: 20px),
+        10:( width: 43px, height: 20px),
+        12:( width: 35px, height: 24px),
+    );
+
+    @each $key, $value in $eyes_size {
+        @if $key < 10 {
+            &--0#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_0#{$key}_eyes.png);
+                 background-image: image-set(url(../img/flower_0#{$key}_eyes.png) 1x, url(../img/flower_0#{$key}_eyes@2x.png) 2x);
+            }
+        } @else {
+            &--#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_#{$key}_eyes.png);
+                 background-image: image-set(url(../img/flower_#{$key}_eyes.png) 1x, url(../img/flower_#{$key}_eyes@2x.png) 2x);
+            }
+        }
+    }
+
+    &--diff {
+        display: flex;
+        gap: 8px;
+    }
+}
+
+.flower-eye {
+    background-size: contain;
+    background-repeat: no-repeat;
+    align-self: flex-end;
+    width: 100%;
+}
+
+.flower-eye-left {
+    &--08 {
+        aspect-ratio: 1 / 1;
+        max-width: 20px;
+        background-image: url(../img/flower_08_eye.png);
+        background-image: image-set(url(../img/flower_08_eye.png) 1x, url(../img/flower_08_eye@2x.png) 2x);
+    }
+
+    &--09 {
+        aspect-ratio: 16 / 30;
+        max-width: 16px;
+        background-image: url(../img/flower_09_eye_left.png);
+        background-image: image-set(url(../img/flower_09_eye_left.png) 1x, url(../img/flower_09_eye_left@2x.png) 2x);
+    }
+
+    &--11 {
+        aspect-ratio: 14 / 15;
+        max-width: 14px;
+        background-image: url(../img/flower_11_eye.png);
+        background-image: image-set(url(../img/flower_11_eye.png) 1x, url(../img/flower_11_eye@2x.png) 2x);
+    }
+}
+
+.flower-eye-right {
+    &--08 {
+        aspect-ratio: 1 / 1;
+        max-width: 20px;
+        background-image: url(../img/flower_08_eye.png);
+        background-image: image-set(url(../img/flower_08_eye.png) 1x, url(../img/flower_08_eye@2x.png) 2x);
+    }
+
+    &--09 {
+        aspect-ratio: 18 / 13;
+        max-width: 18px;
+        background-image: url(../img/flower_09_eye_right.png);
+        background-image: image-set(url(../img/flower_09_eye_right.png) 1x, url(../img/flower_09_eye_right@2x.png) 2x);
+    }
+
+    &--11 {
+        aspect-ratio: 14 / 15;
+        max-width: 14px;
+        background-image: url(../img/flower_11_eye.png);
+        background-image: image-set(url(../img/flower_11_eye.png) 1x, url(../img/flower_11_eye@2x.png) 2x);
+    }
+}
+
+.flower-mouth {
+    background-size: contain;
+    background-repeat: no-repeat;
+    align-self: flex-start;
+    width: 70%;
+
+    $mouth_size :(
+        1:( width: 43px, height: 19px),
+        2:( width: 43px, height: 19px),
+        3:( width: 43px, height: 19px),
+        4:( width: 23px, height: 11px),
+        5:( width: 62px, height: 27px),
+        6:( width: 22px, height: 11px),
+        7:( width: 34px, height: 14px),
+        8:( width: 40px, height: 20px),
+        9:( width: 52px, height: 23px),
+        10:( width: 59px, height: 26px),
+        11:( width: 43px, height: 19px),
+        12:( width: 43px, height: 19px),
+    );
+
+    @each $key, $value in $mouth_size {
+        @if $key < 10 {
+            &--0#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_0#{$key}_mouth.png);
+                 background-image: image-set(url(../img/flower_0#{$key}_mouth.png) 1x, url(../img/flower_0#{$key}_mouth@2x.png) 2x);
+            }
+        } @else {
+            &--#{$key} {
+                 aspect-ratio: map-get($value, "width") / map-get($value, "height");
+                 max-width: map-get($value, "width");
+                 background-image: url(../img/flower_#{$key}_mouth.png);
+                 background-image: image-set(url(../img/flower_#{$key}_mouth.png) 1x, url(../img/flower_#{$key}_mouth@2x.png) 2x);
+            }
+        }
+    }
+}
+
+/*
+** animation
+*/
+
+.flower-face-inner-02,
+.flower-face-inner-04,
+.flower-face-inner-06 {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+
+/*
+** animation-flower01
+*/
+
+.flower-body--01 {
+    animation: 3s linear infinite animate-body-01 paused;
+}
+@keyframes animate-body-01 {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.flower-face--01 {
+    animation: 3s linear infinite animate-face-01 paused;
+}
+@keyframes animate-face-01 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.flower--01.active {
+    .flower-body--01,
+    .flower-face--01 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower02
+*/
+.flower-body--02 {
+    animation: 6s linear infinite animate-body-02 paused;
+}
+@keyframes animate-body-02 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.flower-face--02 {
+    animation: 6s linear infinite animate-face-02 paused;
+}
+@keyframes animate-face-02 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.flower-face-inner-02 {
+    animation: 1.5s linear infinite animate-face-inner-02 paused;
+}
+@keyframes animate-face-inner-02 {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+}
+
+.flower--02.active {
+    .flower-body--02,
+    .flower-face--02,
+    .flower-face-inner-02 {
+      animation-play-state: running;
+    }
+
+}
+
+/*
+** animation-flower03
+*/
+.flower-body--03 {
+    animation: 3s steps(20) infinite animate-body-03 paused;
+}
+@keyframes animate-body-03 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+.flower-face--03 {
+    animation: 3s steps(20) infinite animate-face-03 paused;
+}
+@keyframes animate-face-03 {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.flower--03.active {
+    .flower-body--03,
+    .flower-face--03 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower04
+*/
+.flower-body--04 {
+    animation: 2s infinite animate-body-04 paused;
+    transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1); /* easeInOutQuint */
+}
+@keyframes animate-body-04 {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(25deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(-25deg);
+    }
+}
+.flower-face--04 {
+    animation: 2s infinite animate-face-04 paused;
+    transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1); /* easeInOutQuint */
+}
+@keyframes animate-face-04 {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(-25deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(25deg);
+    }
+}
+.flower-face-inner-04 {
+    animation: 1s infinite animate-face-inner-04 paused;
+    transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1); /* easeInOutQuint */
+}
+@keyframes animate-face-inner-04 {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+
+}
+
+.flower--04.active {
+    .flower-body--04,
+    .flower-face--04,
+    .flower-face-inner-04 {
+    animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower05
+*/
+
+.flower-eyes--05 {
+    animation: 0.1s linear infinite animate-eye-05 alternate paused;
+}
+@keyframes animate-eye-05 {
+	0%, 100% {
+		transform: translateX(0);
+	}
+
+	25% {
+		transform:translateX(-2px);
+	}
+
+	50% {
+		transform:translateX(0);
+	}
+
+    75% {
+        transform:translateX(2px);
+    }
+}
+
+.flower--05.active {
+    .flower-eyes--05 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower06
+*/
+.flower-body--06 {
+    animation: 3s linear infinite animate-body-06 paused;
+}
+@keyframes animate-body-06 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.flower-face--06 {
+    animation: 3s linear infinite animate-face-06 paused;
+}
+@keyframes animate-face-06 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+.flower-face-inner-06 {
+    animation: 1.5s linear infinite animate-face-inner-06 paused;
+}
+@keyframes animate-face-inner-06 {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+}
+
+.flower--06.active {
+    .flower-body--06,
+    .flower-face--06,
+    .flower-face-inner-06 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower07
+*/
+
+.flower-body--07 {
+    animation: 2s steps(4) infinite animate-body-07 paused;
+}
+@keyframes animate-body-07 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.flower-face--07 {
+    animation: 2s steps(4) infinite aniamte-face-07 paused;
+}
+@keyframes aniamte-face-07 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.flower--07.active  {
+    .flower-body--07,
+    .flower-face--07 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower08
+*/
+.flower-body--08 {
+    animation: 0.5s steps(11) infinite animate-body-08 paused;
+}
+@keyframes animate-body-08 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.flower-face--08 {
+    animation: 0.5s steps(11) infinite aniamte-face-08 paused;
+}
+@keyframes aniamte-face-08 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+.flower-eye-left--08{
+    animation: 2s linear infinite animate-eye-08 paused;
+}
+
+.flower-eye-right--08{
+    animation: 2s linear infinite animate-eye-08 paused;
+}
+@keyframes animate-eye-08 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.flower--08.active  {
+    .flower-body--08,
+    .flower-face--08,
+    .flower-eye-left--08,
+    .flower-eye-right--08 {
+        animation-play-state: running;
+    }
+}
+
+
+/*
+** animation-flower09
+*/
+.flower-eye-right--09 {
+    animation: 3s infinite linear animate-eye-09 paused;
+}
+@keyframes animate-eye-09 {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    8%, 58%  {
+        transform: translateY(-8px);
+    }
+
+    16%, 50%, 66%{
+        transform: translateY(0);
+    }
+}
+
+.flower--09.active  {
+    .flower-eye-right--09 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower10
+*/
+
+.flower-body--10 {
+    animation: 3s linear infinite animate-body-10 paused;
+}
+@keyframes animate-body-10 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+.flower-face--10 {
+    animation: 3s linear infinite animate-face-10 paused;
+}
+@keyframes animate-face-10 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.flower--10.active  {
+    .flower-body--10,
+    .flower-face--10 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower11
+*/
+
+.flower-body--11 {
+    animation: 2s linear infinite animate-body-11 paused;
+}
+@keyframes animate-body-11 {
+    0% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.flower-face--11 {
+    animation: 2s linear infinite animate-face-11 paused;
+}
+@keyframes animate-face-11 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.flower-eye-left--11{
+    animation: 2s linear infinite animate-eye-left-11 paused;
+}
+@keyframes animate-eye-left-11 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.flower-eye-right--11{
+    animation: 2s linear infinite animate-eye-right-11 paused;
+}
+@keyframes animate-eye-right-11 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.flower--11.active  {
+    .flower-body--11,
+    .flower-face--11,
+    .flower-eye-left--11,
+    .flower-eye-right--11 {
+        animation-play-state: running;
+    }
+}
+
+/*
+** animation-flower12
+*/
+.flower-body--12 {
+    animation: 3s linear infinite animate-body-12 paused;
+}
+@keyframes animate-body-12 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+.flower-face--12 {
+    animation: 3s linear infinite animate-face-12 paused;
+}
+@keyframes animate-face-12 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.flower--12.active  {
+    .flower-body--12,
+    .flower-face--12 {
+        animation-play-state: running;
+    }
+}

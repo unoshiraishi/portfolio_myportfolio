@@ -1,0 +1,229 @@
+@use "../global" as g;
+
+/*!
+page > top > top-work
+------------------------------
+*/
+a {
+    color: #81d3b8;
+    text-decoration: underline;
+}
+.top-work-title {
+    font-family: var(--font-family-english);
+    font-size: 32px;
+    font-weight: 800;
+    font-style: italic;
+    color: white;
+    line-height: 1;
+    letter-spacing: 0.1em;
+
+    @include g.mq(sm) {
+        font-size: 40px;
+    }
+
+    @include g.mq() {
+        font-size: 48px;
+    }
+}
+.top-work-list {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include g.mq() {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 24px;
+    }
+
+    @include g.mq(xl) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.top-work-item {
+    background-color: #fff;
+    overflow: hidden;
+    padding: 16px 16px 24px;
+}
+
+.top-work-item-img {
+    background-color: rgba(104, 165, 146, 0.2);
+}
+
+.top-work-item-text {
+    font-size: 14px;
+    line-height: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    @include g.mq() {
+        height: 400px;
+    }
+
+    @include g.mq(xl) {
+        height: 440px;
+    }
+}
+
+.top-work-item-title {
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 16px;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+
+    span {
+        display: inline-block;
+    }
+}
+.top-work-item-description {
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+
+    p:not(:first-child) {
+        margin-top: 8px;
+    }
+
+    span {
+        font-size: 12px;
+    }
+}
+.top-work-item-buttons {
+    margin-top: 24px;
+
+    @include g.mq() {
+        margin-top: auto;
+    }
+
+}
+.top-work-item-button {
+    max-width: 340px;
+    margin: 8px auto 0;
+
+}
+
+.red {
+    color: red;
+}
+
+.top-work-item-modal {
+    width: 90%;
+    height: 70%;
+    position: fixed;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 40px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+
+    @include g.mq() {
+        width: 50%;
+        height: 65%;
+        gap: 24px;
+        overflow: visible;
+        padding: 40px;
+    }
+
+    .material-symbols-outlined {
+        font-size: 32px;
+        color: #333333;
+
+        @include g.mq() {
+            font-size: 40px;
+        }
+    }
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+.top-work-item-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 40px;
+    cursor: pointer;
+}
+.top-work-item-modal-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.top-work-item-modal-text{
+    overflow-y: scroll;
+    height: 100%;
+    display: grid;
+    place-items: center;
+
+    @include g.mq() {
+        margin-top: 0;
+        overflow-y: visible;
+        height: auto;
+    }
+}
+
+.top-work-item-modal-text table {
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+
+    tr:not(:first-child) {
+        th {
+            margin-top: 12px;
+
+            @include g.mq() {
+                margin-top: 24px;
+            }
+        }
+    }
+    table,
+    tbody,
+    tr,
+    th,
+    td {
+        display: block;
+    }
+
+    th {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.5;
+
+        @include g.mq() {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+    }
+
+    td {
+        font-size: 14px;
+        display: list-item;
+        list-style-type: '・';
+        margin-left: 8px;
+
+        span {
+            display: block;
+        }
+    }
+}
